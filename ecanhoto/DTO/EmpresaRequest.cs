@@ -17,6 +17,7 @@ namespace ecanhoto.DTO
         [Required]
         [MinLength(5)]
         public string RazaoSocial{ get; set; }
+
         public Empresa ToModel() => new Empresa(Nome, Cnpj, RazaoSocial);
     }
 }

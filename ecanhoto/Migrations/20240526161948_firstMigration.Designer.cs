@@ -11,7 +11,7 @@ using ecanhoto.Context;
 namespace ecanhoto.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240520222524_firstMigration")]
+    [Migration("20240526161948_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />
