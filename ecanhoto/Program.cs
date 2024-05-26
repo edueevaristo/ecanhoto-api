@@ -10,6 +10,19 @@ namespace ecanhoto
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            // Configuração CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:5173") // frontend
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -22,6 +35,8 @@ namespace ecanhoto
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseAuthorization();
 

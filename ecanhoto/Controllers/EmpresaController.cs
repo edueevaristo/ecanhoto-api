@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using ecanhoto.DTO;
 using ecanhoto.Model;
 using ecanhoto.Context;
@@ -10,6 +11,7 @@ namespace ecanhoto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowSpecificOrigin")]
     public class EmpresaController : ControllerBase
     {    
 
