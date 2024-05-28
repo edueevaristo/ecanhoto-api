@@ -11,7 +11,7 @@ using ecanhoto.Context;
 namespace ecanhoto.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240526161948_firstMigration")]
+    [Migration("20240528034006_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />
@@ -106,15 +106,45 @@ namespace ecanhoto.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Conta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EnderecoCobranca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Localizacao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("PorteIndustrial")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QuantidadeFuncionarios")
+                        .HasColumnType("int");
+
                     b.Property<string>("RazaoSocial")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<float>("Receita")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -35,8 +35,16 @@ namespace ecanhoto.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cnpj = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    RazaoSocial = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    RazaoSocial = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Localizacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QuantidadeFuncionarios = table.Column<int>(type: "int", nullable: false),
+                    PorteIndustrial = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Conta = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EnderecoCobranca = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Receita = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
