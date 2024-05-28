@@ -5,7 +5,7 @@
 namespace ecanhoto.Migrations
 {
     /// <inheritdoc />
-    public partial class firstMigration : Migration
+    public partial class AuthMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,6 +58,23 @@ namespace ecanhoto.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Canhoto",
                 columns: table => new
                 {
@@ -91,6 +108,11 @@ namespace ecanhoto.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "FirstName", "LastName", "Password", "Username", "isActive" },
+                values: new object[] { 1, "System", "", "System", "System", false });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Canhoto_ColaboradorId",
                 table: "Canhoto",
@@ -112,6 +134,9 @@ namespace ecanhoto.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Canhoto");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Colaborador");

@@ -1,4 +1,9 @@
 
+using ecanhoto.Context;
+using ecanhoto.Helpers;
+using ecanhoto.Model;
+using ecanhoto.Services;
+
 namespace ecanhoto
 {
     public class Program
@@ -9,7 +14,12 @@ namespace ecanhoto
 
             // Add services to the container.
 
+
             builder.Services.AddControllers();
+
+            builder.Services.AddDbContext<DataContext, DataContext>();
+            builder.Services.AddScoped<DataContext>();
+
 
             // Configuração CORS
             builder.Services.AddCors(options =>
@@ -22,6 +32,10 @@ namespace ecanhoto
                                .AllowAnyMethod();
                     });
             });
+
+            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+            builder.Services.AddScoped<IUserService, UserService>();
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -40,6 +54,7 @@ namespace ecanhoto
 
             app.UseAuthorization();
 
+            app.UseMiddleware<JwtMiddleware>();
 
             app.MapControllers();
 

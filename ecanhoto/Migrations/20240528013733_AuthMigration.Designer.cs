@@ -11,8 +11,8 @@ using ecanhoto.Context;
 namespace ecanhoto.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240526161948_firstMigration")]
-    partial class firstMigration
+    [Migration("20240528013733_AuthMigration")]
+    partial class AuthMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,6 +139,49 @@ namespace ecanhoto.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Status");
+                });
+
+            modelBuilder.Entity("ecanhoto.Model.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstName = "System",
+                            LastName = "",
+                            Password = "System",
+                            Username = "System",
+                            isActive = false
+                        });
                 });
 
             modelBuilder.Entity("ecanhoto.Model.Canhoto", b =>
