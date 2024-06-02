@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -10,6 +11,24 @@ namespace ecanhoto.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Canhoto",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImagemCanhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColaboradorId = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
+                    ValorCanhoto = table.Column<float>(type: "real", nullable: false),
+                    DataInclusao = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Canhoto", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Colaborador",
                 columns: table => new
@@ -26,7 +45,8 @@ namespace ecanhoto.Migrations
                     Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UrlPerfilFoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Permissoes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UsuarioAdmin = table.Column<bool>(type: "bit", nullable: false)
+                    UsuarioAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    DataInclusao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,7 +69,8 @@ namespace ecanhoto.Migrations
                     PorteIndustrial = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Conta = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EnderecoCobranca = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Receita = table.Column<float>(type: "real", nullable: false)
+                    Receita = table.Column<float>(type: "real", nullable: false),
+                    DataInclusao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,61 +84,13 @@ namespace ecanhoto.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false)
+                    Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    DataInclusao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Status", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Canhoto",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImagemCanhoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ColaboradorId = table.Column<int>(type: "int", nullable: false),
-                    EmpresaId = table.Column<int>(type: "int", nullable: false),
-                    StatusId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Canhoto", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Canhoto_Colaborador_ColaboradorId",
-                        column: x => x.ColaboradorId,
-                        principalTable: "Colaborador",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Canhoto_Empresa_EmpresaId",
-                        column: x => x.EmpresaId,
-                        principalTable: "Empresa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Canhoto_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Canhoto_ColaboradorId",
-                table: "Canhoto",
-                column: "ColaboradorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Canhoto_EmpresaId",
-                table: "Canhoto",
-                column: "EmpresaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Canhoto_StatusId",
-                table: "Canhoto",
-                column: "StatusId");
         }
 
         /// <inheritdoc />

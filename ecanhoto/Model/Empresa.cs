@@ -39,5 +39,7 @@ namespace ecanhoto.Model
 
         [Required]
         public float Receita { get; set; } = receita;
+
+        public DateTime DataInclusao { get; set; } = DateTime.Now;
     }
 }

@@ -38,5 +38,7 @@ namespace ecanhoto.Model
         public string? Permissoes { get; set; } = permissoes;
 
         public bool UsuarioAdmin { get; set; } = usuarioAdmin;
+
+        public DateTime DataInclusao { get; set; } = DateTime.Now;
     }
 }
