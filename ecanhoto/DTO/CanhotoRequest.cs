@@ -5,7 +5,7 @@ namespace ecanhoto.DTO
     public class CanhotoRequest
     {
 
-        public string ImagemCanhoto { get; set; }
+        public string? Imagem { get; set; }
 
         public int ColaboradorId { get; set; }
 
@@ -13,6 +13,8 @@ namespace ecanhoto.DTO
 
         public int StatusId { get; set; }
 
-        public Canhoto ToModel() => new Canhoto(ImagemCanhoto, ColaboradorId, EmpresaId, StatusId);
+        public float Valor {  get; set; }
+
+        public Canhoto ToModel() => new Canhoto(Imagem, ColaboradorId, EmpresaId, StatusId, Valor);
     }
 }

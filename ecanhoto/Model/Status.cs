@@ -11,5 +11,7 @@ namespace ecanhoto.Model
         public string Nome { get; set; } = nome;
 
         public bool Ativo { get; set; } = ativo;
+
+        public DateTime DataInclusao { get; set; } = DateTime.Now;
     }
 }

@@ -28,17 +28,32 @@ namespace ecanhoto.Controllers
             return _dataContext.Empresa.ToList();
         }
 
-        // GET api/<EmpresaController>/5
-        [HttpGet("{id}")]
-        public ActionResult<Empresa> Get(int id)
+        // GET api/<EmpresaController>/id/5
+        [HttpGet("id/{id}")]
+        public ActionResult<string> Get(int id)
         {
-            Empresa empresa = _dataContext.Empresa.FirstOrDefault(empresa => empresa.Id == id);
+            var empresa = _dataContext.Empresa.Find(id);
 
-            if (empresa == null) {
-                return NotFound();
+            if (empresa == null)
+            {
+                return NotFound("Empresa não encontrada.");
             }
 
-            return empresa;
+            return empresa.Nome;
+        }
+
+        // GET api/<EmpresaController>/nome/{nome}
+        [HttpGet("nome/{nome}")]
+        public ActionResult<int> GetEmpresaPerName(string nome)
+        {
+            var empresa = _dataContext.Empresa.FirstOrDefault(s => s.Nome == nome);
+
+            if (empresa == null)
+            {
+                return NotFound("Empresa não encontrada.");
+            }
+
+            return empresa.Id;
         }
 
         // POST api/<EmpresaController>

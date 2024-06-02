@@ -28,11 +28,32 @@ namespace ecanhoto.Controllers
             return _dataContext.Colaborador.ToList();
         }
 
-        // GET api/<ColaboradorController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/<ColaboradorController>/id/5
+        [HttpGet("id/{id}")]
+        public ActionResult<string> Get(int id)
         {
-            return _dataContext.Colaborador.Find(id).Nome;
+            var colaborador = _dataContext.Colaborador.Find(id);
+
+            if (colaborador == null)
+            {
+                return NotFound("Colaborador não encontrado.");
+            }
+
+            return colaborador.Nome;
+        }
+
+        // GET api/<ColaboradorController>/nome/{nome}
+        [HttpGet("nome/{nome}")]
+        public ActionResult<int> GetColaboradorPerName(string nome)
+        {
+            var colaborador = _dataContext.Colaborador.FirstOrDefault(s => s.Nome == nome);
+
+            if (colaborador == null)
+            {
+                return NotFound("Colaborador não encontrado.");
+            }
+
+            return colaborador.Id;
         }
 
         // POST api/<ColaboradorController>
