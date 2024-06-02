@@ -11,7 +11,7 @@ using ecanhoto.Context;
 namespace ecanhoto.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240528034006_firstMigration")]
+    [Migration("20240531210325_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />
@@ -64,7 +64,22 @@ namespace ecanhoto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Cep")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DataNascimento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Endereco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -72,6 +87,10 @@ namespace ecanhoto.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Pais")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Permissoes")
                         .HasColumnType("nvarchar(max)");
@@ -82,7 +101,6 @@ namespace ecanhoto.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UrlPerfilFoto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("UsuarioAdmin")

@@ -19,7 +19,12 @@ namespace ecanhoto.Migrations
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UrlPerfilFoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataNascimento = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cidade = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cep = table.Column<int>(type: "int", nullable: false),
+                    Pais = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UrlPerfilFoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Permissoes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UsuarioAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },

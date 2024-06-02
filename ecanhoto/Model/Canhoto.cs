@@ -16,10 +16,5 @@ namespace ecanhoto.Model
 
         public int StatusId { get; set; } = statusId;
 
-        public Colaborador? Colaborador { get; set; }
-
-        public Empresa? Empresa { get; set; }
-
-        public Status?  Status { get; set; }
     }
 }
