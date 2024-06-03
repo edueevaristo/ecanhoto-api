@@ -3,8 +3,8 @@ namespace ecanhoto.DTO
 {
     public class AuthenticateRequest
     {
-        [DefaultValue("System")]
-        public required string Username { get; set; }
+        [DefaultValue("system@system.com")]
+        public required string Email { get; set; }
 
         [DefaultValue("System")]
         public required string Password { get; set; }

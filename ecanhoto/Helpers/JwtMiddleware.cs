@@ -22,7 +22,7 @@ namespace ecanhoto.Helpers
         }
         
         // Este método recupera o token no header da requisição 
-        public async Task Invoke(HttpContext context, UserService userService)
+        public async Task Invoke(HttpContext context, IUserService userService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
@@ -30,13 +30,11 @@ namespace ecanhoto.Helpers
                 await this.attachUserToContext(context, userService, token);
 
             await _next(context);
-
-
         }         
 
         // Este método tenta validar o Token da requisição de acordo com o secret definido em appSettings
         // Se a validação funcionar, recuperamos os dados do usuário e interceptamos o Http Request incrementando os dados do usuário.
-        private async Task attachUserToContext(HttpContext context, UserService userService, string token)
+        private async Task attachUserToContext(HttpContext context, IUserService userService, string token)
         {   
             try
             {
@@ -65,6 +63,8 @@ namespace ecanhoto.Helpers
                 // não faz nada se a autenticação Jwt falhar
             }
         }
+
+        
 
     }
 }

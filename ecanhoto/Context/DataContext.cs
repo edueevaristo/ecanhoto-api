@@ -17,19 +17,29 @@ namespace ecanhoto.Context
 
         public DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    Id = 1,
-                    FirstName = "System",
-                    LastName = "",
-                    Username = "System",
-                    Password = "System",
-                }
-            );
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Empresa>().HasData(
+        //        new Empresa(
+        //            1,
+        //            "Unimar",
+        //            "1234567891234",
+        //            "Unimar"
+        //        )
+        //    );
+        //    modelBuilder.Entity<User>().HasData(
+        //        new User
+        //        (   
+        //            1,
+        //            "System",
+        //            "system@system.com",
+        //            1,
+        //            "System",
+        //            true
+        //        )
+        //    ) ;
+            
+        //}
 
     }
 }

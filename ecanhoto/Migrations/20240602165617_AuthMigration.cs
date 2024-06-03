@@ -63,15 +63,21 @@ namespace ecanhoto.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Empresa_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresa",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,11 +114,6 @@ namespace ecanhoto.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "FirstName", "LastName", "Password", "Username", "isActive" },
-                values: new object[] { 1, "System", "", "System", "System", false });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Canhoto_ColaboradorId",
                 table: "Canhoto",
@@ -127,6 +128,11 @@ namespace ecanhoto.Migrations
                 name: "IX_Canhoto_StatusId",
                 table: "Canhoto",
                 column: "StatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_EmpresaId",
+                table: "Users",
+                column: "EmpresaId");
         }
 
         /// <inheritdoc />
@@ -142,10 +148,10 @@ namespace ecanhoto.Migrations
                 name: "Colaborador");
 
             migrationBuilder.DropTable(
-                name: "Empresa");
+                name: "Status");
 
             migrationBuilder.DropTable(
-                name: "Status");
+                name: "Empresa");
         }
     }
 }

@@ -11,7 +11,7 @@ using ecanhoto.Context;
 namespace ecanhoto.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240528013733_AuthMigration")]
+    [Migration("20240602165617_AuthMigration")]
     partial class AuthMigration
     {
         /// <inheritdoc />
@@ -149,11 +149,17 @@ namespace ecanhoto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -161,27 +167,11 @@ namespace ecanhoto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("EmpresaId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FirstName = "System",
-                            LastName = "",
-                            Password = "System",
-                            Username = "System",
-                            isActive = false
-                        });
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ecanhoto.Model.Canhoto", b =>
@@ -209,6 +199,17 @@ namespace ecanhoto.Migrations
                     b.Navigation("Empresa");
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("ecanhoto.Model.User", b =>
+                {
+                    b.HasOne("ecanhoto.Model.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
                 });
 #pragma warning restore 612, 618
         }
