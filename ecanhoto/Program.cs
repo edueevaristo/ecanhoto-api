@@ -51,7 +51,7 @@ namespace ecanhoto
                 swagger.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "JWT Token Authentication API",
+                    Title = "API E-Canhotos",
                     Description = ".NET 8 Web API"
                 });
                 // To Enable authorization using Swagger (JWT)
