@@ -3,6 +3,7 @@ using ecanhoto.Helpers;
 using ecanhoto.Services;
 using ecanhoto.Model;
 using ecanhoto.DTO;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,6 +53,7 @@ namespace ecanhoto.Controllers
             return Ok(user);
         }
 
+
         //[ApiController]  // Action method level
         [HttpGet]
         [Authorize]
@@ -72,5 +74,16 @@ namespace ecanhoto.Controllers
             }
             return Ok(user);
         }
+
+        [HttpGet("verify-token")]
+        [Authorize]
+        public IActionResult VerifyToken()
+        {
+            return Ok(new { isValid = true }); ;
+        }
+
+
+
+
     }
 }

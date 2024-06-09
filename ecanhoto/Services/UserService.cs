@@ -38,6 +38,7 @@ namespace ecanhoto.Services
 
             var token = await generateJwtToken(user.Result);
 
+   
             return new AuthenticateResponse(user.Result, token);
         }
 

@@ -6,6 +6,7 @@ namespace ecanhoto.Model
     public class User
     {
         [Key]
+        [JsonIgnore]
         public int Id { get; set; }
 
         [Required]
@@ -17,6 +18,7 @@ namespace ecanhoto.Model
         [Required]
         public int EmpresaId { get; set; }
 
+        [JsonIgnore]
         public Empresa Empresa { get; set; }
 
         [JsonIgnore]
@@ -51,6 +53,9 @@ namespace ecanhoto.Model
             IsActive = isActive;
             IsAdmin = isAdmin;
         }
+
+        // Overload para Response
+      
     }
 }
     
