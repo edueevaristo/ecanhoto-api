@@ -5,7 +5,7 @@ namespace ecanhoto.DTO
 {
     public class CreateOrUpdateUserRequest
     {
-        // ID nao é necessário apra criar, mas é para atualizar
+        // ID não é necessário para criar, mas é para atualizar
         public int? Id { get; set; }
 
         [Required]
@@ -31,13 +31,13 @@ namespace ecanhoto.DTO
         {
             return new User
             (
-                Id = this.Id ?? 0,
-                Name = this.Name,
-                Email = this.Email,
-                EmpresaId = this.EmpresaId,
-                Password = this.Password,
-                IsActive = this.IsActive,
-                IsAdmin = this.IsAdmin
+                Id.HasValue ? Id.Value : 0,
+                Name,
+                Email,
+                EmpresaId,
+                Password,
+                IsActive,
+                IsAdmin
             );
         }
     }

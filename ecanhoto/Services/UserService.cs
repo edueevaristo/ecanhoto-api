@@ -49,7 +49,7 @@ namespace ecanhoto.Services
 
             if (currentUser == null)
             {
-                // Se o usuário não estiver logado, retornar uma lista vazia ou lançar uma exceção
+                // Se o usuário não estiver logado, retornar uma lista vazia 
                 return new List<User>();
             }
 
