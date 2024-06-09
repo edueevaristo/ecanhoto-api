@@ -90,10 +90,14 @@ namespace ecanhoto.Services
             if (user == null) return null;
 
             user.Name = request.Name;
+            user.DataNascimento = request.DataNascimento;
             user.Email = request.Email;
             user.EmpresaId = request.EmpresaId;
             user.Password = request.Password; //hash a senha aqui
             user.IsActive = request.IsActive;
+            user.IsAdmin = request.IsAdmin;
+            user.UrlPerfilFoto = request.UrlPerfilFoto;
+            
 
             _dataContext.Users.Update(user);
 

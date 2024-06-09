@@ -10,7 +10,18 @@ namespace ecanhoto.DTO
 
         public AuthenticateResponse(User user, string token)
         {
-            User = new User(user.Id, user.Name, user.Email, user.EmpresaId, user.Password, user.IsActive, user.IsAdmin);
+            User = new User(
+                user.Id,
+                user.Name,
+                user.Email,
+                user.EmpresaId,
+                user.Password,
+                user.IsActive,
+                user.IsAdmin,
+                user.DataNascimento,
+                user.UrlPerfilFoto,
+                user.DataInclusao
+            );
             Token = token;
         }
     }

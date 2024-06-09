@@ -5,12 +5,14 @@ namespace ecanhoto.DTO
 {
     public class CreateOrUpdateUserRequest
     {
-        // ID não é necessário para criar, mas é para atualizar
         public int? Id { get; set; }
 
         [Required]
         [StringLength(100, MinimumLength = 1)]
         public string Name { get; set; }
+
+        [Required]
+        public string DataNascimento { get; set; }
 
         [Required]
         [EmailAddress]
@@ -27,18 +29,40 @@ namespace ecanhoto.DTO
 
         public bool IsAdmin { get; set; } = false;
 
+        public string? UrlPerfilFoto { get; set; }
+
         public User ToModel()
         {
-            return new User
-            (
-                Id.HasValue ? Id.Value : 0,
-                Name,
-                Email,
-                EmpresaId,
-                Password,
-                IsActive,
-                IsAdmin
-            );
+            if (Id.HasValue)
+            {
+                return new User
+                (
+                    Id.Value,
+                    Name,
+                    Email,
+                    EmpresaId,
+                    Password,
+                    IsActive,
+                    IsAdmin,
+                    DataNascimento,
+                    UrlPerfilFoto,
+                    DateTime.Now // Atualiza a data de inclusão
+                );
+            }
+            else
+            {
+                return new User
+                (
+                    Name,
+                    Email,
+                    EmpresaId,
+                    Password,
+                    IsActive,
+                    IsAdmin,
+                    DataNascimento,
+                    UrlPerfilFoto
+                );
+            }
         }
     }
 }
