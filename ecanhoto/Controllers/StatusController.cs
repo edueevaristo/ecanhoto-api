@@ -4,6 +4,7 @@ using ecanhoto.Model;
 using ecanhoto.DTO;
 using ecanhoto.Context;
 using Microsoft.IdentityModel.Tokens;
+using ecanhoto.Helpers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,6 +13,7 @@ namespace ecanhoto.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AllowSpecificOrigin")]
+    [Authorize]
     public class StatusController : ControllerBase
     {
         private readonly DataContext _dataContext;
