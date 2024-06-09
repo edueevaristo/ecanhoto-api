@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ecanhoto.Model
 {
-    public class Canhoto(string imagemCanhoto, int colaboradorId, int empresaId, int statusId, float valorCanhoto)
+    public class Canhoto(string imagemCanhoto, int colaboradorId, int empresaId, int statusId, float valorCanhoto, int chaveNf, int numNf)
     {
         [Key]
         public int Id { get; set; }
@@ -17,6 +17,10 @@ namespace ecanhoto.Model
         public int StatusId { get; set; } = statusId;
 
         public float ValorCanhoto { get; set; } = valorCanhoto;
+
+        public int ChaveNf { get; set; } = chaveNf;
+        
+        public int NumNf { get; set; } = numNf;
 
         public DateTime DataInclusao { get; set; } = DateTime.Now;
     }

@@ -2,23 +2,15 @@
 
 namespace ecanhoto.DTO
 {
-    public class CanhotoResponse
+    public class CanhotoResponse(Canhoto canhoto)
     {
-        public string? ImagemCanhoto { get; set; }
-        public int ColaboradorId { get; set; }
-        public int EmpresaId { get; set; }
-        public int StatusId { get; set; }
-        public float ValorCanhoto { get; set; }
-        public string DataInclusao { get; set; }
-
-        public CanhotoResponse(Canhoto canhoto)
-        {
-            ImagemCanhoto = canhoto.ImagemCanhoto;
-            ColaboradorId = canhoto.ColaboradorId;
-            EmpresaId = canhoto.EmpresaId;
-            StatusId = canhoto.StatusId;
-            ValorCanhoto = canhoto.ValorCanhoto;
-            DataInclusao = Convert.ToString(canhoto.DataInclusao);
-        }
+        public string? ImagemCanhoto { get; set; } = canhoto.ImagemCanhoto;
+        public int ColaboradorId { get; set; } = canhoto.ColaboradorId;
+        public int EmpresaId { get; set; } = canhoto.EmpresaId;
+        public int StatusId { get; set; } = canhoto.StatusId;
+        public float ValorCanhoto { get; set; } = canhoto.ValorCanhoto;
+        public int ChaveNf { get; set; } = canhoto.ChaveNf;
+        public int NumNf { get; set; } = canhoto.NumNf;
+        public string DataInclusao { get; set; } = Convert.ToString(canhoto.DataInclusao);
     }
 }

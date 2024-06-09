@@ -22,6 +22,8 @@ namespace ecanhoto.Migrations
                     EmpresaId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     ValorCanhoto = table.Column<float>(type: "real", nullable: false),
+                    ChaveNf = table.Column<int>(type: "int", nullable: false),
+                    NumNf = table.Column<int>(type: "int", nullable: false),
                     DataInclusao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
