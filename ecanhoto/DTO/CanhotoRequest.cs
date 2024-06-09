@@ -15,6 +15,10 @@ namespace ecanhoto.DTO
 
         public float Valor {  get; set; }
 
-        public Canhoto ToModel() => new Canhoto(Imagem, ColaboradorId, EmpresaId, StatusId, Valor);
+        public int ChaveNf { get; set; }
+
+        public int NumNf { get; set; }
+
+        public Canhoto ToModel() => new Canhoto(Imagem, ColaboradorId, EmpresaId, StatusId, Valor, ChaveNf, NumNf);
     }
 }
