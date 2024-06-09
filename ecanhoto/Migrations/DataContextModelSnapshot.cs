@@ -30,6 +30,9 @@ namespace ecanhoto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ChaveNf")
+                        .HasColumnType("int");
+
                     b.Property<int>("ColaboradorId")
                         .HasColumnType("int");
 
@@ -41,6 +44,9 @@ namespace ecanhoto.Migrations
 
                     b.Property<string>("ImagemCanhoto")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumNf")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");

@@ -12,7 +12,7 @@ using ecanhoto.Context;
 namespace ecanhoto.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240602060712_firstMigration")]
+    [Migration("20240609191613_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />
@@ -33,6 +33,9 @@ namespace ecanhoto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ChaveNf")
+                        .HasColumnType("int");
+
                     b.Property<int>("ColaboradorId")
                         .HasColumnType("int");
 
@@ -44,6 +47,9 @@ namespace ecanhoto.Migrations
 
                     b.Property<string>("ImagemCanhoto")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumNf")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
