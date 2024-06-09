@@ -7,10 +7,15 @@ public class User
     [Key]
     public int Id { get; set; }
 
+    
     [Required]
     public string Name { get; set; }
 
     [Required]
+    public string DataNascimento { get; set; }
+
+    [Required]
+    [EmailAddress]
     public string Email { get; set; }
 
     [Required]
@@ -27,28 +32,36 @@ public class User
 
     public bool IsAdmin { get; set; }
 
-    // Construtor com parâmetros
-    public User(string name, string email, int empresaId, string password, bool isActive, bool isAdmin)
-    {
-        Name = name;
-        Email = email;
-        EmpresaId = empresaId;
-        Password = password;
-        IsActive = isActive; // Define um valor padrão para IsActive, se necessário
-        IsAdmin = isAdmin;
-    }
+    public DateTime DataInclusao { get; set; } = DateTime.Now;
 
-    //public User() { } // EF Core
+    public string? UrlPerfilFoto { get; set; }
 
-    // Overload de User para casos de Update
-    public User(int? id, string name, string email, int empresaId, string password, bool isActive, bool isAdmin)
+    public User() { }
+
+    public User(string name, string email, int empresaId, string password, bool isActive, bool isAdmin, string dataNascimento, string? urlPerfilFoto)
     {
-        Id = id ?? 0; 
         Name = name;
         Email = email;
         EmpresaId = empresaId;
         Password = password;
         IsActive = isActive;
         IsAdmin = isAdmin;
+        DataNascimento = dataNascimento;
+        UrlPerfilFoto = urlPerfilFoto ?? "";
+        DataInclusao = DateTime.Now;
+    }
+
+    public User(int id, string name, string email, int empresaId, string password, bool isActive, bool isAdmin, string dataNascimento, string? urlPerfilFoto, DateTime dataInclusao)
+    {
+        Id = id;
+        Name = name;
+        Email = email;
+        EmpresaId = empresaId;
+        Password = password;
+        IsActive = isActive;
+        IsAdmin = isAdmin;
+        DataNascimento = dataNascimento;
+        UrlPerfilFoto = urlPerfilFoto ?? "";
+        DataInclusao = dataInclusao;
     }
 }
