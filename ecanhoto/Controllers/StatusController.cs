@@ -30,11 +30,28 @@ namespace ecanhoto.Controllers
             return _dataContext.Status.ToList();
         }
 
-        // GET api/<StatusController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/<StatusController>/id/5
+        [HttpGet("id/{id}")]
+        public ActionResult<string> Get(int id)
         {
-            return _dataContext.Status.Find(id).Nome;
+            var status = _dataContext.Status.Find(id);
+            if (status == null)
+            {
+                return NotFound("Status não encontrado.");
+            }
+            return status.Nome;
+        }
+
+        // GET api/<StatusController>/nome/{nome}
+        [HttpGet("nome/{nome}")]
+        public ActionResult<int> GetStatusPerName(string nome)
+        {
+            var status = _dataContext.Status.FirstOrDefault(s => s.Nome == nome);
+            if (status == null)
+            {
+                return NotFound("Status não encontrado.");
+            }
+            return status.Id;
         }
 
         // POST api/<StatusController>

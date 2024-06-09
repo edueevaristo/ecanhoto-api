@@ -31,10 +31,17 @@ namespace ecanhoto.Controllers
         }
 
         // GET api/<CanhotoController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("id/{id}")]
+        public IActionResult Get(int id)
         {
-            return _dataContext.Canhoto.Find(id).ImagemCanhoto;
+            var canhoto = _dataContext.Canhoto.Find(id);
+
+            if (canhoto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(canhoto);
         }
 
         // POST api/<CanhotoController>
@@ -69,6 +76,7 @@ namespace ecanhoto.Controllers
             atualiza.ColaboradorId = canhoto.ColaboradorId == 0 ? atualiza.ColaboradorId : canhoto.ColaboradorId;
             atualiza.EmpresaId = canhoto.EmpresaId == 0 ? atualiza.EmpresaId : canhoto.EmpresaId;
             atualiza.StatusId = canhoto.StatusId == 0 ? atualiza.StatusId : canhoto.StatusId;
+            atualiza.ValorCanhoto = canhoto.ValorCanhoto == 0 ? atualiza.ValorCanhoto : canhoto.ValorCanhoto;
 
             _dataContext.SaveChanges();
 
@@ -96,6 +104,19 @@ namespace ecanhoto.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpGet("imagem/{id}")]
+        public IActionResult GetImagemCanhoto(int id)
+        {
+            var canhoto = _dataContext.Canhoto.Find(id);
+            if (canhoto == null || string.IsNullOrEmpty(canhoto.ImagemCanhoto))
+            {
+                return NotFound("Canhoto não encontrado.");
+            }
+
+            var imageBytes = Convert.FromBase64String(canhoto.ImagemCanhoto);
+            return File(imageBytes, "image/jpeg");
         }
     }
 }
