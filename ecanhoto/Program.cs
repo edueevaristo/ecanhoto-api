@@ -52,7 +52,7 @@ namespace ecanhoto
                 {
                     Version = "v1",
                     Title = "API E-Canhotos",
-                    Description = ".NET 8 Web API"
+                    Description = "A API do e-Canhoto oferece uma interface robusta e fácil de usar para a gestão digital de canhotos de entrega.\r\n    Com esta API, as empresas podem automatizar a criação, gerenciamento e armazenamento de comprovantes de entrega,\r\n    garantindo maior eficiência e rastreabilidade no processo logístico."
                 });
                 // To Enable authorization using Swagger (JWT)
                 swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()

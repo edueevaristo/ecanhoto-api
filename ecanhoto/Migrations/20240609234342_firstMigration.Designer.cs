@@ -12,8 +12,8 @@ using ecanhoto.Context;
 namespace ecanhoto.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240609230531_AlteracoesUser")]
-    partial class AlteracoesUser
+    [Migration("20240609234342_firstMigration")]
+    partial class firstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
